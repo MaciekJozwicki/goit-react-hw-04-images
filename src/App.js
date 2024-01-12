@@ -1,18 +1,19 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-import Searchbar from "./components/Searchbar/Searchbar";
-import ImageGallery from "./components/ImageGallery/ImageGallery";
-import fetchImages from "./services/fetchImages";
-import Loader from "./components/Loader/Loader";
-import Button from "./components/Button/Button";
+import { useState, useEffect } from 'react';
+import './App.css';
+import Searchbar from './components/Searchbar/Searchbar';
+import ImageGallery from './components/ImageGallery/ImageGallery';
+import fetchImages from './services/fetchImages';
+import Loader from './components/Loader/Loader';
+import Button from './components/Button/Button';
 
 const App = () => {
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   const handleSearchValueChange = text => {
+    setImages([]);
     setSearchValue(text);
   };
 
@@ -20,20 +21,30 @@ const App = () => {
     setPage(prevState => prevState + 1);
   };
 
-  
-
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(!isLoading);
-      const result = await fetchImages(searchValue, page);
-    
-      setImages(prevState => [...prevState, ...result]);
-      setIsLoading(false);
-    };
     if (searchValue) {
-      fetchData();
+      setIsLoading(true);
+      fetchImages(searchValue, page)
+        .then(result => {
+          setImages(prevState => [...prevState, ...result]);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   }, [searchValue, page]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setIsLoading(!isLoading);
+  //     const result = await fetchImages(searchValue, page);
+
+  //     setImages(prevState => [...prevState, ...result]);
+  //     setIsLoading(false);
+  //   };
+  //   if (searchValue) {
+  //     fetchData();
+  //   }
+  // }, [searchValue, page]);
 
   return (
     <>

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
-import Modal from "../Modal/Modal";
-import styles from "./ImageGallery.module.css";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+import Modal from '../Modal/Modal';
+import styles from './ImageGallery.module.css';
 
 const ImageGallery = ({ images }) => {
   const [imageObject, setImageObject] = useState({});
@@ -20,7 +20,7 @@ const ImageGallery = ({ images }) => {
   const handleIsModalOpenChange = () => {
     setIsModalOpen(!isModalOpen);
   };
- 
+
   return (
     <>
       <ul className={styles.gallery}>

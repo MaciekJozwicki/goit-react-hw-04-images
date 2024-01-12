@@ -1,9 +1,9 @@
-import React, { Component, useState } from "react";
-import PropTypes from "prop-types";
-import styles from "./Searchbar.module.css";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import styles from './Searchbar.module.css';
 
 export const Searchbar = ({ handleSearchValueChange }) => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = e => {
     setInputValue(e.target.value);
@@ -18,16 +18,16 @@ export const Searchbar = ({ handleSearchValueChange }) => {
     <div className={styles.searchbar}>
       <header>
         <form onSubmit={onSubmit}>
-          <button type='submit' className={styles.button}>
-            <span className='button-label'>Search</span>
+          <button type="submit" className={styles.button}>
+            <span className="button-label">Search</span>
           </button>
 
           <input
             className={styles.input}
-            type='text'
-            autoComplete='off'
+            type="text"
+            autoComplete="off"
             autoFocus
-            placeholder='Search images and photos'
+            placeholder="Search images and photos"
             onChange={handleInputChange}
           />
         </form>
